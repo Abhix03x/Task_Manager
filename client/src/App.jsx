@@ -3,6 +3,7 @@ import Register from './pages/Register.jsx';
 import Login from "./pages/Login";
 import Dashboard from './pages/Dashboard.jsx';
 import CreateTask from './pages/CreateTask.jsx';
+import MyTask from './pages/MyTask.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 
@@ -25,6 +26,12 @@ function App() {
         element={
           <ProtectedRoute>
               <CreateTask/>
+          </ProtectedRoute>
+        }/>
+        <Route path="tasks"
+        element={
+          <ProtectedRoute>
+            <MyTask/>
           </ProtectedRoute>
         }/>
       </Routes>

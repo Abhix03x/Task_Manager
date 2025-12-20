@@ -8,6 +8,9 @@ const Dashboard = () => {
                 <li>
                     <Link to="/CreateTask">Create Task</Link>
                 </li>
+                <li>
+                    <Link to="/tasks">My Tasks</Link>
+                </li>
             </ul>
         </div>
     );

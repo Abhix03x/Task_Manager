@@ -9,16 +9,15 @@ const CreateTask = () =>{
     });
     const [message,setMessage]=useState("");
     const [users,setUsers] = useState([]);
+    const [type,setType] = useState("personal");
 
     useEffect(()=>{
-        const fetchUser = async () =>{
-            const res = await axios.get("/users");
-            console.log("Users API response:", res.data); 
-            setUsers(res.data);
-           
-        }
-        fetchUser();
-    },[]);
+        
+        if (type === "assign") {
+         axios.get("/users").then((res) => setUsers(res.data));
+       }
+       
+    },[type]);
 
     const handleChange = (e) =>{
         setFormData({...formData,[e.target.name]:e.target.value});
@@ -26,9 +25,14 @@ const CreateTask = () =>{
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const payload = 
+        type === "personal"
+        ? {title:formData.title,description:formData.description}
+        : formData;
         try{
-            console.log(formData);
-            await axios.post("/tasks",formData);
+            
+            await axios.post("/tasks",payload);
             setMessage('Task created Successfully');
             setFormData({title:"",
         description:"",
@@ -41,6 +45,11 @@ const CreateTask = () =>{
     return(
         <div>
             <h2>Create Task</h2>
+
+            <div>
+                <button onClick={() => setType("personal")}>My Task</button>
+                <button onClick={() => setType("assign")}>Assign Task</button>
+            </div>
 
             <form onSubmit={handleSubmit}>
                 <input name="title" placeholder="Title"
@@ -55,7 +64,8 @@ const CreateTask = () =>{
                 onChange={handleChange}
                 required/>
 
-                <select 
+                {type === "assign" && (
+                    <select 
                 name="assignedTo"
                 value={formData.assignedTo}
                 onChange={handleChange}
@@ -63,16 +73,19 @@ const CreateTask = () =>{
                 >
                     <option value="">Select User</option>
                    
-                    {Array.isArray(users) && users.map((user)=>(
+                    { users.map((user)=>(
                         <option key={user._id} value={user._id}>
                             {user.name}
                         </option> 
                     ))}
                   
                 </select>
+                )};
+                
                 <button type="submit"> Create task</button>
               
             </form>
+            {message && <p>{message}</p>}
         </div>
     );
 
