@@ -1,0 +1,14 @@
+import { createTaskService } from "../services/taskService.js";
+
+export const createTask = async (req,res) =>{
+    try{
+        console.log(req.body);
+        console.log(req.user);
+        const {title ,description,assignedTo} = req.body;
+
+        const task = await createTaskService({title,description,assignedTo,createdBy:req.user.id,});
+        res.status(201).json(task);
+    }catch(err){
+        res.status(400).json({message:err.message});
+    }
+};
