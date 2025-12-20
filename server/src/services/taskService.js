@@ -10,7 +10,15 @@ export const createTaskService = async({
         title,
         description,
         createdBy,
-        assignedTo,
+        assignedTo:assignedTo || null,
+        
     });
     return task;
+};
+
+//get Task
+
+export const getTaskService = async (userId) =>{
+    return await Task.find({$or:[{createdBy:userId},{assignedTo:userId}],
+    }).populate("assignedTo","name email");
 };

@@ -1,4 +1,4 @@
-import { createTaskService } from "../services/taskService.js";
+import { createTaskService, getTaskService } from "../services/taskService.js";
 
 export const createTask = async (req,res) =>{
     try{
@@ -12,3 +12,12 @@ export const createTask = async (req,res) =>{
         res.status(400).json({message:err.message});
     }
 };
+
+export const  getTask = async (req,res) => {
+    try{
+        const tasks =await getTaskService(req.user._id);
+        res.json(tasks);
+    }catch(err){
+
+    }
+}
