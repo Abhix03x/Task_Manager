@@ -6,7 +6,7 @@ export const createTask = async (req,res) =>{
         console.log(req.user);
         const {title ,description,assignedTo} = req.body;
 
-        const task = await createTaskService({title,description,assignedTo,createdBy:req.user.id,});
+        const task = await createTaskService({title,description,createdBy:req.user.id,assignedTo,});
         res.status(201).json(task);
     }catch(err){
         res.status(400).json({message:err.message});
@@ -15,9 +15,9 @@ export const createTask = async (req,res) =>{
 
 export const  getTask = async (req,res) => {
     try{
-        const tasks =await getTaskService(req.user._id);
+        const tasks =await getTaskService(req.user.id);
         res.json(tasks);
     }catch(err){
-
+        res.status(400).json({message: err.message});
     }
-}
+};
