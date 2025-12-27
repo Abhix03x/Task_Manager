@@ -80,7 +80,7 @@ const CreateTask = () =>{
                     ))}
                   
                 </select>
-                )};
+                )}
                 
                 <button type="submit"> Create task</button>
               

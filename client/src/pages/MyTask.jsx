@@ -11,18 +11,23 @@ const MyTask = () => {
              const res = await axios.get("/tasks");
              console.log("all tasks",res.data);
             
-             const myId = JSON.parse(localStorage.getItem("user"))?._id;
+             const user = JSON.parse(localStorage.getItem("user"));
+             const myId = user?.id;
+             if(!myId){
+                console.log("user not in local storage");
+                return;
+             }
              console.log("user id",myId);
 
              const personal = res.data.filter(
-                (task) => task.createdBy?._id === myId && !task.assignedTo
+                (task) => task.createdBy?._id === myId && task.assignedTo == null
              );
-             console.log("my tasks",personal.data);
+             console.log("my tasks",personal);
 
              const assigned = res.data.filter(
                 (task) => task.assignedTo?._id === myId
              );
-             console.log("Assigned tasks",assigned.data);
+             console.log("Assigned tasks",assigned);
 
              setpersonalTasks(personal);
              setAssignedTasks(assigned);
