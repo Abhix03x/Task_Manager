@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import axios from "../api/axios.jsx";
+import Navbar from "../components/NavBar.jsx";
 
 const CreateTask = () =>{
     const [formData,setFormData] = useState({
@@ -43,6 +44,8 @@ const CreateTask = () =>{
     }
 
     return(
+        <>
+            <Navbar/>
         <div>
             <h2>Create Task</h2>
 
@@ -87,6 +90,8 @@ const CreateTask = () =>{
             </form>
             {message && <p>{message}</p>}
         </div>
+        </>
+        
     );
 
 };

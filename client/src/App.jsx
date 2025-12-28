@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard.jsx';
 import CreateTask from './pages/CreateTask.jsx';
 import MyTask from './pages/MyTask.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import AssignedTasks from './pages/AssignedTask.jsx';
 
 
 function App() {
@@ -28,12 +29,19 @@ function App() {
               <CreateTask/>
           </ProtectedRoute>
         }/>
-        <Route path="tasks"
+        <Route path="/tasks"
         element={
           <ProtectedRoute>
             <MyTask/>
           </ProtectedRoute>
         }/>
+        <Route path="/assigned-tasks"
+            element={
+              <ProtectedRoute>
+                <AssignedTasks/>
+              </ProtectedRoute>
+            }
+        />
       </Routes>
     </BrowserRouter>
   )

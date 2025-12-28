@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import axios from "../api/axios.jsx";
 import TaskCard from "../components/TaskCard.jsx";
+import Navbar from "../components/NavBar.jsx";
 
 const MyTask = () => {
     const [personalTasks, setpersonalTasks] = useState([]);
@@ -41,25 +42,28 @@ const MyTask = () => {
     }, []);
 
     return(
-        <div>
+       <>
+        <Navbar/>
+         <div>
             <h2>My Tasks</h2>
             <section>
                 <h3>My Tasks</h3>
                 {personalTasks.length === 0 && <p>No personal tasks</p>}
                 {personalTasks.map((task) => (
-                    <TaskCard key={task._id} task={task} refresh={fetchTasks}/>
+                    <TaskCard key={task._id} task={task} refresh={fetchTasks} mode="personal"/>
                 ))}
             </section>
             <section>
                 <h3>Assigned Tasks</h3>
                 {assignedTasks.length === 0 && <p>No assigned Tasks</p>}
                 {assignedTasks.map((task) => (
-                     <TaskCard key={task._id} task={task} refresh={fetchTasks}/>
+                     <TaskCard key={task._id} task={task} refresh={fetchTasks} mode="assignedToMe"/>
                 ))}
             </section>
             
            
         </div>
+       </>
     );
 };
 
