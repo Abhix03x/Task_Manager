@@ -1,4 +1,4 @@
-import { createTaskService, getTaskService } from "../services/taskService.js";
+import { assignedTask, createTaskService, deleteTaskService, getTaskService, markCompletedService, updateTaskService } from "../services/taskService.js";
 
 export const createTask = async (req,res) =>{
     try{
@@ -19,5 +19,45 @@ export const  getTask = async (req,res) => {
         res.json(tasks);
     }catch(err){
         res.status(400).json({message: err.message});
+    }
+};
+
+export const updateTask = async (req,res) =>{
+    try{
+        const updateTask = await updateTaskService(
+            req.params.id,req.user.id,req.body,
+        );
+        res.json(updateTask);
+    }catch(err){
+        res.status(403).json({message:err.message});
+    }
+}
+
+export const markCompleted = async (req,res) =>{
+    try{
+        const task = await markCompletedService(
+            req.params.id,req.user.id
+        );
+        res.json(task);
+    }catch(err){
+        res.status(403).json({message:err.message});
+    }
+};
+
+export const deleteTask = async (req,res) =>{
+    try{
+        await deleteTaskService(req.params.id,req.user.id);
+        res.json({message:"task Deleted"});
+    }catch(err){
+        res.status(403).json({message:err.message});
+    }
+};
+
+export const getAssignedTask = async(req,res) => {
+    try{
+        const tasks = await assignedTask(req.user.id);
+        res.json(tasks);
+    }catch(err){
+        res.status(400).json({message:err.message});
     }
 };
