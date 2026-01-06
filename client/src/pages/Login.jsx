@@ -21,6 +21,10 @@ const Login = () => {
     });
   };
 
+  const changePage = (e) => {
+    navigate("/register");
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -38,55 +42,56 @@ const Login = () => {
   };
 
   return (
-    <div style={{ width: "400px", margin: "50px auto" }}>
-      <h2>Login</h2>
-
-      <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: "15px" }}>
-          <label>Email</label>
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-purple-900 to-blue-500">
+      
+      <div className="w-full max-w-md bg-white  backdrop-blur-lg rounded-2xl shadow-xl px-10 py-15 ">
+         <h2 className="text-2xl font-semibold text-slate-800 text-center mb-2">Welcome Back</h2>
+         <h2 className="text-center text-slate-500 mb-8">Login to manage your task</h2>
+      <form onSubmit={handleLogin}
+      className="space-y-4">
+        
+         
+          <label className="block text-sm font-medium text-slate-600 mb-1">Email</label>
           <input
             name="email"
             type="email"
             value={formData.email}
             onChange={handleChange}
+            className="w-full h-12 px-4  rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500 focus:ring-2 text-slate-700"
             required
-            style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+            placeholder="you@example.com"
           />
-        </div>
+      
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Password</label>
+        
+          <label className="block text-sm font-medium text-slate-600 mb-1">Password</label>
           <input
             name="password"
             type="password"
             value={formData.password}
             onChange={handleChange}
+             className="w-full px-4 h-12 rounded-lg border border-slate-300 text-slate-600"
             required
-            style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+            placeholder="••••••••"
           />
-        </div>
-
-        <button
+        <div className="flex justify-center">
+             <button
           type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#2ecc71",
-            color: "#fff",
-            borderRadius: "6px",
-            border: "none",
-            cursor: "pointer"
-          }}
+           className=" bg-blue-600 text-white px-6 py-3 font-medium rounded-lg "
         >
           Login
         </button>
+       
+        </div>
+        <span className="flex justify-center">Don't have an account ?<a href="#" onClick={changePage}> Register</a></span>
+       
       </form>
-
       {message && (
-        <p style={{ marginTop: "15px", color: message.includes("success") ? "green" : "red" }}>
+        <p className="text-cener mt-4 text-red-500">
           {message}
         </p>
       )}
+    </div>
     </div>
   );
 };
