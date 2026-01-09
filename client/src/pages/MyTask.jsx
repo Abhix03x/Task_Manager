@@ -44,24 +44,26 @@ const MyTask = () => {
     return(
        <>
         <Navbar/>
-         <div>
-            <h2>My Tasks</h2>
-            <section>
-                <h3>My Tasks</h3>
-                {personalTasks.length === 0 && <p>No personal tasks</p>}
+         <div className="min-h-screen p-6">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <section className="bg-white/70 backdrop-blur-xl border border-slate-300 rounded-2xl p-6 shadow-lg">
+                <h2 className="text-xl font-semibold text-slate-900 mb-4">My Tasks</h2>
+                <div className="space-y-4">{personalTasks.length === 0 && <p className="text-slate-700">No personal tasks</p>}</div>
                 {personalTasks.map((task) => (
                     <TaskCard key={task._id} task={task} refresh={fetchTasks} mode="personal"/>
                 ))}
             </section>
-            <section>
-                <h3>Assigned Tasks</h3>
-                {assignedTasks.length === 0 && <p>No assigned Tasks</p>}
+            <section className="bg-white/70 backdrop-blur-xl border border-slate-300 rounded-2xl p-6 shadow-lg">
+                <h2 className="text-xl font-semibold text-slate-800 mb-4">Assigned Tasks</h2>
+                <div className="space-y-4">{assignedTasks.length === 0 && <p className="text-slate-700">No assigned Tasks</p>}</div>
                 {assignedTasks.map((task) => (
                      <TaskCard key={task._id} task={task} refresh={fetchTasks} mode="assignedToMe"/>
                 ))}
             </section>
             
            
+        </div>
         </div>
        </>
     );
