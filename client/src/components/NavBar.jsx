@@ -11,7 +11,7 @@ const Navbar = () =>{
     };
 
     return (
-        <nav className="sticky top-0 z-50 bg-slate-900 border-b text-white px-6 py-4 flex justify-between items-center">
+        <nav className="sticky top-0 z-50 bg-slate-950  text-white px-6 py-4 flex justify-between items-center">
             <h3 className="text-xl font-bold">Task Manager</h3>
             <div>
                 {user && <span className="px-5">User - {user.name}</span>}

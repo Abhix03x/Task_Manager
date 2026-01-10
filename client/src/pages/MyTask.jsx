@@ -44,7 +44,7 @@ const MyTask = () => {
     return(
        <>
         <Navbar/>
-         <div className="min-h-screen p-6">
+         <div className="min-h-screen p-6 bg-slate-900">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             
             <section className="bg-white/70 backdrop-blur-xl border border-slate-300 rounded-2xl p-6 shadow-lg">

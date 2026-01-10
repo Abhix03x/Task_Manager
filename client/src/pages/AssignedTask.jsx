@@ -23,8 +23,9 @@ const AssignedTasks = () =>{
     return(
        <>
        <Navbar/>
-        <div>
-            <h2>Assigned Tasks</h2>
+        <div className="min-h-screen p-6 bg-slate-900">
+            <div className=" bg-white/70 backdrop-blur-xl border border-slate-400 rounded-2xl p-6 shadow-lg">
+            <h2 className="text-xl font-semibold text-slate-900 mb-4">Assigned Tasks</h2>
 
             {tasks.length === 0 && <p>No assigned Tasks</p>}
 
@@ -34,6 +35,7 @@ const AssignedTasks = () =>{
                 refresh={fetchTasks}
                 mode="assignedByMe"/>
             ))}
+        </div>
         </div>
        </>
     );
